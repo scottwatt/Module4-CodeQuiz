@@ -1,3 +1,4 @@
+// questions for the quiz 
 var questions = [ 
     {
         title: "How many heading tags are in HTML?",
@@ -25,6 +26,8 @@ var questions = [
         answer: "False"
     }
 ]
+
+// listed variables
 var answerMenu = document.querySelector("#answerMenu")
 var showTime = document.getElementById("timeLeft");
 var score = 0;
@@ -32,6 +35,7 @@ var currentQuestion = -1;
 var timeLeft = 0;
 var timer;
 
+// start timer and game
 function start(){
     timeLeft = 40;
     showTime.innerHTML = timeLeft
@@ -50,6 +54,7 @@ function start(){
     next();
 }
 
+// function to go to next guestion and create buttons for the questions 
 function next() {
     currentQuestion++;
 
@@ -78,6 +83,7 @@ function next() {
     
 }
 
+// end game screen 
 function endGame() {
     clearInterval(timer);
 
@@ -91,7 +97,7 @@ function endGame() {
         document.getElementById("quiz").innerHTML = quizContent;
 }
 
-
+// highscore if the score is higher than previous score 
 function inputScore(){
     var highscore = localStorage.getItem("highscore");
     if(score > highscore){
@@ -105,6 +111,7 @@ function inputScore(){
     getScore();
 }
 
+// gets inputScore() 
 function getScore() {
     
     var quizContent = 
@@ -115,6 +122,7 @@ function getScore() {
     document.getElementById("quiz").innerHTML = quizContent;
 }
 
+// clears highscore 
 function clearScore() {
     localStorage.setItem("highscore", "");
     localStorage.setItem("highscoreName", "");
@@ -122,7 +130,7 @@ function clearScore() {
     clearGame();
 }
 
-
+// resets game timer and questions 
 function clearGame(){
     clearInterval(timer);
     score = 0;
@@ -144,6 +152,7 @@ function clearGame(){
     document.getElementById("quiz").innerHTML = quizContent;
 }
 
+// prints wrong answer, takes off 15 seconds and goes to next question 
 function wrong(){
     answerMenu.setAttribute("class", "border-top mt-3 pt-3")
     answerMenu.setAttribute("style", "font-size: 20px; color: white; font-weight: bold; text-align: center;");
@@ -152,6 +161,7 @@ function wrong(){
     next()
 }
 
+// prints right answer, gives 10 points and goes to next question 
 function correct(){
     answerMenu.setAttribute("class", "border-top mt-3 pt-3")
     answerMenu.setAttribute("style", "font-size: 20px; color: white; font-weight: bold; text-align: center;");
