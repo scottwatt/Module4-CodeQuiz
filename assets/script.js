@@ -25,7 +25,7 @@ var questions = [
         answer: "False"
     }
 ]
-
+var answerMenu = document.querySelector("#answerMenu")
 var showTime = document.getElementById("timeLeft");
 var score = 0;
 var currentQuestion = -1;
@@ -66,13 +66,16 @@ function next() {
         
         if (questions[currentQuestion].choices[buttonLoop] == questions[currentQuestion].answer) {           
              buttonCode = buttonCode.replace("[ANS]", "correct()");
-             quizContent.textContent = "Correct";        
+             
+            
+
         }   else { 
                buttonCode = buttonCode.replace("[ANS]", "wrong()");      
              }        
              quizContent += buttonCode   
     }
     document.getElementById("quiz").innerHTML = quizContent;
+    
 }
 
 function endGame() {
@@ -91,7 +94,7 @@ function endGame() {
 
 function inputScore(){
     localStorage.setItem("highscore", score);
-    localStorage.setItem("highscoreName", document.getElementsById('name').value);
+    localStorage.setItem("highscoreName", document.getElementsById('#name'));
     getScore();
 }
 
@@ -134,11 +137,20 @@ function clearGame(){
 }
 
 function wrong(){
+    answerMenu.setAttribute("class", "border-top mt-3 pt-3")
+    answerMenu.setAttribute("style", "font-size: 20px; color: white; font-weight: bold; text-align: center;");
+    answerMenu.textContent = "You got the answer wrong.";
     timeLeft -= 15;
     next()
 }
 
 function correct(){
+    answerMenu.setAttribute("class", "border-top mt-3 pt-3")
+    answerMenu.setAttribute("style", "font-size: 20px; color: white; font-weight: bold; text-align: center;");
+    answerMenu.textContent = "You got the answer right!";
     score += 10;
-    next()
+    next();
+    
 }
+
+
